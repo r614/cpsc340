@@ -34,6 +34,6 @@ def bar_grad(x):
     p = np.prod(x)
     res = []
     for num in x: 
-        res.append(float("{:.8f}".format(p/num))) if num != 0 else float('inf')
+        res.append(float("{:.8f}".format(p/num))) if num != 0 else 1
     return res
 # Hint: This is a bit tricky - what if one of the x[i] is zero?

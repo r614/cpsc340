@@ -58,12 +58,12 @@ def main(question):
         print ("\n")
 
         means = sorted([(col, df[col].mean()) for col in df], key=lambda x: x[1])
-        variances = sorted([(col, df[col].std()) for col in df], key=lambda x: x[1])
+        variances = sorted([(col, df[col].var()) for col in df], key=lambda x: x[1])
 
-        print(f"Lowest Mean: {means[0][0]} - {means[0][1]}")
-        print(f"Highest Mean: {means[-1][0]} - {means[-1][1]}")
-        print(f"Lowest Std: {variances[0][0]} - {variances[0][1]}")
-        print(f"Highest Std: {variances[-1][0]} - {variances[-1][1]}")
+        print(f"Lowest Mean: {means[0][0]}, {means[0][1]}")
+        print(f"Highest Mean: {means[-1][0]}, {means[-1][1]}")
+        print(f"Lowest variance: {variances[0][0]}, {variances[0][1]}")
+        print(f"Highest variance: {variances[-1][0]}, {variances[-1][1]}")
 
 
 
