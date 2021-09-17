@@ -20,7 +20,10 @@ def foo(x):
 
 
 def foo_grad(x):
-    raise NotImplementedError("Implement foo_grad") # TODO
+    result = [] 
+    for x_i in x: 
+        result.append(float("{:.8f}".format(4*(x_i ** 3))))
+    return result
 
 
 def bar(x):
@@ -28,5 +31,9 @@ def bar(x):
 
 
 def bar_grad(x):
-    raise NotImplementedError("Implement bar_grad") # TODO
+    p = np.prod(x)
+    res = []
+    for num in x: 
+        res.append(float("{:.8f}".format(p/num))) if num != 0 else float('inf')
+    return res
 # Hint: This is a bit tricky - what if one of the x[i] is zero?

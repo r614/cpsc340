@@ -40,20 +40,31 @@ def main(question):
             print("\n** %s **" % fun.__name__)
             print("My gradient     : %s" % grad(x0))
             print("Scipy's gradient: %s" % diff)
+            print("\n\n")
 
 
         check_grad(grads.example, grads.example_grad)
-        # check_grad(grads.foo, grads.foo_grad)
-        # check_grad(grads.bar, grads.bar_grad)
+        check_grad(grads.foo, grads.foo_grad)
+        check_grad(grads.bar, grads.bar_grad)
 
 
     elif question == "5.1":
         # Load the fluTrends dataset
         df = pd.read_csv(os.path.join('..', 'data', 'fluTrends.csv'))
         X = df.values
-        names = df.columns.values
 
-        # YOUR CODE HERE
+        print(df.describe())
+
+        print ("\n")
+
+        means = sorted([(col, df[col].mean()) for col in df], key=lambda x: x[1])
+        variances = sorted([(col, df[col].std()) for col in df], key=lambda x: x[1])
+
+        print(f"Lowest Mean: {means[0][0]} - {means[0][1]}")
+        print(f"Highest Mean: {means[-1][0]} - {means[-1][1]}")
+        print(f"Lowest Std: {variances[0][0]} - {variances[0][1]}")
+        print(f"Highest Std: {variances[-1][0]} - {variances[-1][1]}")
+
 
 
     elif question == "6":
