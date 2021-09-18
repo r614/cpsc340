@@ -20,10 +20,7 @@ def foo(x):
 
 
 def foo_grad(x):
-    result = [] 
-    for x_i in x: 
-        result.append(float("{:.8f}".format(4*(x_i ** 3))))
-    return result
+    return 4*np.array(x, dtype=np.float64)**3
 
 
 def bar(x):
@@ -34,6 +31,6 @@ def bar_grad(x):
     p = np.prod(x)
     res = []
     for num in x: 
-        res.append(float("{:.8f}".format(p/num))) if num != 0 else 1
+        res.append(p/num) if num != 0 else 1
     return res
 # Hint: This is a bit tricky - what if one of the x[i] is zero?
