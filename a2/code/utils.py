@@ -1,8 +1,25 @@
-import os.path
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
 
+def plot_acc(ks, accuracy, acc_type): 
+    """
+    ks, accuracy are pairwise arrays of K-acc
+    """
+    types = { 
+        "TRAIN": "Training Accuracy",
+        "VAL": "Validation Accuracy",
+        "TEST": "Testing Accuracy"
+    }
+
+    plt.figure()
+    plt.xlim([min(ks) , max(ks)])
+    plt.ylim([min(accuracy)-0.1, max(accuracy) + 0.1])
+
+    plt.plot(ks, accuracy)
+    plt.title(f"K v/s {types[acc_type]}")
+    plt.xlabel("K")
+    plt.ylabel(types[acc_type])
 
 def plot_classifier(model, X, y):
     """plots the decision boundary of the model and the scatterpoints
