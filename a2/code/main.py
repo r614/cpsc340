@@ -177,6 +177,8 @@ def q2():
     plt.savefig(fname)
     print("\nSaved figure at '%s'" % fname)
 
+    print(f"Highest test acc k : {ks[np.argmax(test_acc)]}")
+    print(f"Highest cv acc k: {ks[np.argmax(cv_accs)]}")
 
 
 
@@ -261,12 +263,16 @@ def q4():
         te_error = np.mean(y_pred != y_test)
         print(f"    Training error: {tr_error:.3f}")
         print(f"    Testing error: {te_error:.3f}")
+        print("------\n")
 
     print("Decision tree info gain")
     evaluate_model(DecisionTree(max_depth=np.inf, stump_class=DecisionStumpInfoGain))
 
-    """YOUR CODE HERE FOR Q4"""
-    raise NotImplementedError()
+    print("Single Random Tree")
+    evaluate_model(RandomTree(max_depth=np.inf))
+
+    print("50 Trees")
+    evaluate_model(RandomForest(np.inf, 50))
 
 
 @handle("5")

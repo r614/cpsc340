@@ -19,9 +19,23 @@ class RandomTree(DecisionTree):
 
 
 class RandomForest:
-    """
-    YOUR CODE HERE FOR Q4
-    Hint: start with the constructor __init__(), which takes the hyperparameters.
-    Hint: you can instantiate objects inside fit().
-    Make sure predict() is able to handle multiple examples.
-    """
+    def __init__(self, max_depth, num_trees) -> None:
+        self.max_depth = max_depth
+        self.num_trees = num_trees 
+        self.trees = []
+
+    def fit(self, X, y): 
+        for _ in range(self.num_trees):
+            tree = RandomTree(self.max_depth)
+            tree.fit(X,y)
+            self.trees.append(tree)
+    
+    def predict(self, X):
+        N, _ = X.shape
+
+        tree_predictions = np.zeros((N, self.num_trees))
+        
+        for i in range(self.num_trees):
+            tree_predictions[:, i] = self.trees[i].predict(X)
+
+        return [utils.mode(tree_predictions[i,:]) for i in range(N)]
